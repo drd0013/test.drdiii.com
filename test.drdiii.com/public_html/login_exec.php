@@ -1,44 +1,38 @@
 <?php
-include('./includes/connection.php');
+include('./includes.connection.php');
 
-$email = $_POST['email'];
-$escapedPW = mysql_real_escape_string($_POST['password']);
+$esc_email = mysqli_real_escape_string($con, $_POST['email']);
+$esc_pw = mysqli_real_escape_string($con, $_POST['password']);
 
-$saltQuery = "select salt 
-from userlogin 
-where email = '$email'";
-$result = mysqli_query($con,$saltQuery)
-or die(header("location: login.php?remarks=nfd1"));
-# you'll want some error handling in production code :)
-# see http://php.net/manual/en/function.mysql-query.php Example #2 for the general error handling template
-$row = mysqli_fetch_assoc($result);
-$salt = $row['salt'];
-if (!$result){
-	header("location: login.php?remarks=nfd4");
-	exit();
-}
+$get_salt = 
+    "SELECT salt
+    FROM userlogin
+    WHERE email = '$esc_email'";
 
-$saltedPW =  $escapedPW . $salt;
+$find_user = 
+    "SELECT COUNT(email)
+    FROM userlogin
+    WHERE email = '$esc_email' AND
+    password = '$hash_pw'";
 
-$hashedPW = hash('sha256', $saltedPW);
-
-$PWquery = "select count(email) as num
-from userlogin 
-where email = '$email' and 
-password = '$hashedPW'";
-
-$result = mysqli_query($con,$PWquery)
-or die(header("location: login.php?remarks=nfd2"));
-$login = mysqli_fetch_assoc($result);
-$login = $login['num'];
-
-if ($login > 0){
-	header("location: ./login_success.php?remarks=" . (string)$email . '');
-}
+if($res = mysqli_query($con, $get_salt)){
+    $row = mysqli_fetch_assoc($res);
+    $salt = $row['salt'];
+    $salt_pw = $esc_pw . $salt;
+    $hash_pw = hash('sha256', $salt_pw);
+    }
 else{
-	header("location: login.php?remarks=nfd3");
-}
-
-# if nonzero query return then successful login
-
+    mysqli_close($con);
+    header("location: login.php?remarks=nfd1");
+    }
+if(mysqli_query($con, $find_user)){
+    setcookie('email', $esc_email, false, '/user', 'test.drdiii.com');
+    setcookie('hash_pw', $hash_pw, false, '/user', 'test.drdiii.com');
+    mysqli_close($con);
+    header("Location: ./Account/index.php");
+    }
+else{
+    mysqli_close($con);
+    header("location: login.php?remarks=nfd2");
+    }
 ?>
