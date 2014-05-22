@@ -29,26 +29,26 @@ if($res = mysqli_query($con,$search_cust)){
 }
 else{
     mysqli_close($con);
-    header("location: register.php?remarks=failcust");
+    header("location: ./register.php?remarks=failcust");
 }
 if($esc_contact == $row[0] or $row[1]){
     if(mysqli_query($con, $search_id)){
-        header("location: register.php?remarks=failexists");
+        header("location: ./register.php?remarks=failexists");
     }
     else{
         if(mysqli_query($con,$create_user)){
             mysqli_close($con);
-            header("location: register.php?remarks=success");
+            header("location: ./register.php?remarks=success");
         }
 		else{
 			mysqli_close($con);
-			header("location: register.php?remarks=failed");
+			header("location: ./register.php?remarks=failed");
 		}
 	}
 }
 else{
     mysqli_close($con);
-    header("location: register.php?remarks=failnum");
+    header("location: ./register.php?remarks=failnum");
 }
 
 ?>

@@ -10,7 +10,7 @@ $get_salt =
     WHERE email = '$esc_email'";
 
 $find_user = 
-    "SELECT COUNT(email)
+    "SELECT email
     FROM userlogin
     WHERE email = '$esc_email' AND
     password = '$hash_pw'";
@@ -23,7 +23,7 @@ if($res = mysqli_query($con, $get_salt)){
     }
 else{
     mysqli_close($con);
-    header("location: login.php?remarks=nfd1");
+    header("location: /login.php?remarks=nfd1");
     }
 if(mysqli_query($con, $find_user)){
     setcookie('email', $esc_email, false, '/user', 'test.drdiii.com');
@@ -33,6 +33,6 @@ if(mysqli_query($con, $find_user)){
     }
 else{
     mysqli_close($con);
-    header("location: login.php?remarks=nfd2");
+    header("location: /login.php?remarks=nfd2");
     }
 ?>

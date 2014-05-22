@@ -29,7 +29,7 @@
  Welcome to Widget Inc! 
  Please fill out and submit the form below to login
 
-    <form name="reg" onsubmit="return validateForm()" action="./login_exec.php" method="post">
+    <form name="reg" onsubmit="return validateForm()" action="./script/login_exec.php" method="post">
     <table width="274" border="0" align="center" cellpadding="2" cellspacing="0">
     <tr>
     <td colspan="2">
