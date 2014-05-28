@@ -3,9 +3,9 @@ $host = 'localhost';
 $uname = 'gasadmin';
 $pword = 'Gassy';
 $db = 'gastest';
-$key = '/etc/.ssh/key.pem';
-$cert = '/etc/.ssh/cert.pem';
-$ca = '/etc/.ssh/cacert.pem';
+$key = '/etc/ssl/private/dovecot.pem';
+$cert = '/etc/ssl/certs/dovecot.pem';
+$ca = '/etc/ssl/certs/ca-certificates.crt';
 
 
 mysqli_options ($con, MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true);
