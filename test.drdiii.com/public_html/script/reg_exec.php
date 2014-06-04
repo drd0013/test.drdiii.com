@@ -1,6 +1,6 @@
 <?php
 
-include('./includes.connect.php');
+include('./includes.connection.php');
 
 $esc_custid = mysqli_real_escape_string($con, $_POST['custid']);
 $esc_contact = mysqli_real_escape_string($con, $_POST['contact']);

@@ -1,5 +1,5 @@
 <?php
-include('./includes.connect.php');
+include('./includes.connection.php');
 
 $esc_email = mysqli_real_escape_string($con, $_POST['email']);
 $esc_pw = mysqli_real_escape_string($con, $_POST['password']);
@@ -27,7 +27,6 @@ else{
     }
 if(mysqli_query($con, $find_user)){
     setcookie('email', $esc_email, false, '/user', 'test.drdiii.com');
-    setcookie('hash_pw', $hash_pw, false, '/user', 'test.drdiii.com');
     mysqli_close($con);
     header("Location: ./Account/index.php");
     }
