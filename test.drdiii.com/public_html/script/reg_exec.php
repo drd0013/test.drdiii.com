@@ -21,7 +21,7 @@ $search_id =
 
 $create_user = 
     "INSERT INTO userlogin (cust_id, email, password, salt)
-    VALUES('$esc_custid', '$esc_email', '$hash_pw', '$salt'";
+    VALUES('$esc_custid', '$esc_email', '$hash_pw', '$salt')";
 
 
 if($res = mysqli_query($con,$search_cust)){
@@ -37,6 +37,7 @@ if($esc_contact == $row[0] or $row[1]){
     }
     else{
         if(mysqli_query($con,$create_user)){
+        	include('../includes.sendmail.php');
             mysqli_close($con);
             header("location: ../register.php?remarks=success");
         }
