@@ -1,5 +1,5 @@
 <?php
-include('./includes.connection.php');
+include('../includes.connection.php');
 
 $esc_email = mysqli_real_escape_string($con, $_POST['email']);
 $esc_pw = mysqli_real_escape_string($con, $_POST['password']);
