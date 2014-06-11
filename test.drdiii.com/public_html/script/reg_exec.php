@@ -33,11 +33,11 @@ else{
     header("location: ../register.php?remarks=failcust");
 }
 if($esc_contact == $row[0] or $row[1]){
-    if(mysqli_query($con, $search_id)){
+    $res = mysqli_query($con, $search_id);
+	if (mysqli_fetch_row($res)){
         header("location: ../register.php?remarks=failexists");
     }
-    else{
-        if(mysqli_query($con,$create_user)){
+	elseif(mysqli_query($con,$create_user)){
         	include('../includes.sendmail.php');
             mysqli_close($con);
             header("location: ../register.php?remarks=success");
@@ -45,7 +45,6 @@ if($esc_contact == $row[0] or $row[1]){
 		else{
 			mysqli_close($con);
 			header("location: ../register.php?remarks=failed");
-		}
 	}
 }
 else{
