@@ -24,7 +24,8 @@ $create_user =
     VALUES('$esc_custid', '$esc_email', '$hash_pw', '$salt')";
 
 
-if($res = mysqli_query($con,$search_cust)){
+$res = mysqli_query($con,$search_cust);
+if (mysqli_fetch_row($res)){
     $row = mysqli_fetch_assoc($res);
 }
 else{
