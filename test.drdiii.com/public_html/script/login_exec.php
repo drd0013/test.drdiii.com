@@ -5,15 +5,10 @@ $esc_email = mysqli_real_escape_string($con, $_POST['email']);
 $esc_pw = mysqli_real_escape_string($con, $_POST['password']);
 
 $get_salt = 
-    "SELECT salt, password
+    "SELECT salt, password, cust_id
     FROM userlogin
     WHERE email = '$esc_email'";
 
-$find_user = 
-    "SELECT cust_id
-    FROM userlogin
-    WHERE email = '$esc_email' AND
-    password = '$hash_pw'";
 $res = mysqli_query($con, $get_salt);
 if($row = mysqli_fetch_row($res)){
     $salt = $row[0];
@@ -25,9 +20,11 @@ else{
     header("location: ../login.php?remarks=nfd1");
 	exit;
     }
-/*$res = mysqli_query($con, $find_user);*/
 if($hash_pw == $row[1]){
-    /*setcookie('email', $esc_email, false, '/user', 'test.drdiii.com');*/
+    session_start();
+	$_SESSION['email'] = $esc_email;
+	$_SESSION['cust_id'] = $row[2];
+	session_regenerate_id();
     mysqli_close($con);
     header("Location: ../home/index.php");
 	exit;
