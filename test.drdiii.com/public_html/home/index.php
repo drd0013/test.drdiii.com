@@ -16,6 +16,6 @@ echo $_SESSION['email'] . ' ' . $_SESSION['cust_id'];
 Please select what you would like to do: <br>
 <a href="./trans.php">Look at my transaction history and balance</a><br>
 <a href="./pay_balance.php">Pay my Widgets Bill</a><br>
-<a href="./manage.php:">Manage my online account</a><br>
+<a href="./manage.php">Manage my online account</a><br>
 </body>
 </html>
