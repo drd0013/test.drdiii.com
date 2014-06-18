@@ -36,7 +36,9 @@ session_start();
 </head>
 <body>
 	Displaying last 30 days of transaction history: <br>
-	<?php include('../includes/get_trans.php'); ?>
+	<?php 
+	include($_SERVER['DOCUMENT_ROOT'].'/includes/get_trans.php'); 
+	?>
 	<h2 class="demoHeaders">Datepicker</h2>
 	<div id="datepicker"></div>
 </body>
