@@ -2,6 +2,7 @@
 include($_SERVER['DOCUMENT_ROOT'].'./connection.php');
 session_start();
 echo $host;
+$trans_found = 'n';
 $today = date("YmdHis");
 $cust_id = $_SESSION['cust_id'];
 $get_trans = 
@@ -28,13 +29,43 @@ echo $from_date . '  ' . $through_date . '  ' . $cust_id;
 	
 $res = mysqli_query($con, $get_trans);
 echo mysqli_num_rows($res);
+?>
+<table border="1" style="width:600px">
+<tr>
+	<th>Transaction Date</th>
+	<th>Transaction Type</th>
+	<th>Transaction Amount</th>
+	<th>Resulting Balance</th>
+</tr>
+<?php
 while ($row = mysqli_fetch_row($res)){
 	$tran_date = strtotime($row[0]);
 	if (strtotime($from_date) <= $tran_date and $tran_date <= strtotime($through_date)){
-		echo $row[0] . '  ' . 
-		$row[1] . '  ' . 
-		$row[2] . '  ' . 
-		$row[3]; 
+		if ($row[1] == 'p'){
+			$tran_type = 'Payment';
+		}
+		elseif ($row[1] == 'b'){
+			$tran_type = 'Bill';
+		}
+		else{
+			$tran_type = 'Unknown';
+		}
+		?>
+		<tr>
+			<td><?php echo $row[0]; ?></td>
+			<td><?php echo $tran_type; ?></td>
+			<td><?php echo $row[2]; ?></td>
+			<td><?php echo $row[3]; ?></td>
+		</tr>
+		<?php
+		$trans_found = 'y';
 	}
+}
+?>
+</table>
+<br />
+<?php
+if ($trans_found == 'n'){
+	echo 'No transactions found in date range';	
 }
 ?>
