@@ -1,5 +1,5 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'].'./connection.php');
+include($_SERVER['DOCUMENT_ROOT'].'/includes/connection.php');
 session_start();
 echo $host;
 $trans_found = 'n';
@@ -41,10 +41,10 @@ echo mysqli_num_rows($res);
 while ($row = mysqli_fetch_row($res)){
 	$tran_date = strtotime($row[0]);
 	if (strtotime($from_date) <= $tran_date and $tran_date <= strtotime($through_date)){
-		if ($row[1] == 'p'){
+		if ($row[1] == 'P'){
 			$tran_type = 'Payment';
 		}
-		elseif ($row[1] == 'b'){
+		elseif ($row[1] == 'B'){
 			$tran_type = 'Bill';
 		}
 		else{

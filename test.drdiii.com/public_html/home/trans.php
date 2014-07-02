@@ -6,17 +6,21 @@ session_start();
 <head>
 	<meta charset="utf-8">
 	<title>Account Transactions</title>
-	<link href="../includes/datepicker/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
-	<script src="../includes/datepicker/js/jquery-1.10.2.js" type="text/javascript"></script>
-	<script src="../includes/datepicker/js/jquery-ui-1.10.4.custom.js" type="text/javascript"></script>
+	<link rel="stylesheet" href='../includes/datepicker/development-bundle/themes/base/jquery.ui.all.css'>
+	<script src='../includes/datepicker/js/jquery-1.10.2.js' type="text/javascript"></script>
+	<script src='../includes/datepicker/development-bundle/ui/jquery.ui.core.js'></script>
+	<script src='../includes/datepicker/development-bundle/ui/jquery.ui.widget.js'></script>
+	<script src='../includes/datepicker/development-bundle/ui/jquery.ui.datepicker.js'></script>
+	<link rel="stylesheet" href='../includes/datepicker/development-bundle/demos/demos.css'>
 	<script>
 		$(function() {
 			$( "#from_date" ).datepicker({
 				dateFormat: "yymmdd",
 				defaultDate: "-30d",
 				changeMonth: true,
+				changeYear: true,
 				numberOfMonths: 2,
-				maxDate: "+0d"
+				maxDate: "+0d",
 				onClose: function( selectedDate ) {
 					$( "#through_date" ).datepicker( "option", "minDate", selectedDate );
 					}
@@ -25,8 +29,9 @@ session_start();
 				dateFormat: "yymmdd",
 				defaultDate: "+0d",
 				changeMonth: true,
+				changeYear: true,
 				numberOfMonths: 2,
-				maxDate: "+0d"
+				maxDate: "+0d",
 				onClose: function( selectedDate ) {
 					$( "#from_date" ).datepicker( "option", "maxDate", selectedDate );
 				}
@@ -51,11 +56,11 @@ session_start();
 	<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 		<table width="274" border="0" align="center" cellpadding="2" cellspacing="0">
 		<tr>
-    		<td width="95"><div align="right">From Date:</div></td>
+    		<td width="95"><div align="right"><label for='from_date'>From Date:</label></div></td>
     		<td width="171"><input type="text" id="from_date" name="from_date" /></td>
     	</tr>
     	<tr>
-    		<td width="95"><div align="right">Through Date:</div></td>
+    		<td width="95"><div align="right"><label for='through_date'>Through Date:</label></div></td>
     		<td width="171"><input type="text" id="through_date" name="through_date" /></td>
     	</tr>
     	<tr>
