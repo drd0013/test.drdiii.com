@@ -30,6 +30,7 @@ echo $from_date . '  ' . $through_date . '  ' . $cust_id;
 $res = mysqli_query($con, $get_trans);
 echo mysqli_num_rows($res);
 ?>
+<div style="text-align: center">
 <table border="1" style="width:600px">
 <tr>
 	<th>Transaction Date</th>
@@ -54,8 +55,8 @@ while ($row = mysqli_fetch_row($res)){
 		<tr>
 			<td><?php echo $row[0]; ?></td>
 			<td><?php echo $tran_type; ?></td>
-			<td><?php echo $row[2]; ?></td>
-			<td><?php echo $row[3]; ?></td>
+			<td>$<?php echo $row[2]; ?></td>
+			<td>$<?php echo $row[3]; ?></td>
 		</tr>
 		<?php
 		$trans_found = 'y';
@@ -63,6 +64,7 @@ while ($row = mysqli_fetch_row($res)){
 }
 ?>
 </table>
+</div>
 <br />
 <?php
 if ($trans_found == 'n'){
