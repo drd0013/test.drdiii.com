@@ -1,7 +1,6 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'].'/includes/connection.php');
 session_start();
-echo $host;
 $trans_found = 'n';
 $today = date("YmdHis");
 $cust_id = $_SESSION['cust_id'];
@@ -11,7 +10,6 @@ $get_trans =
     WHERE cust_id = '$cust_id'";
     /*AND tran_datetime > '$from_date'
     AND tran_datetime < '$through_date'";*/
-echo $_SESSION['cust_id'] . $cust_id;
 	
 if (empty($_POST['from_date'])){
 	$from_date = date('YmdHis', strtotime("now -30 days") );
@@ -25,10 +23,8 @@ if (empty($_POST['through_date'])){
 else{
 	$through_date = $_POST['through_date'];
 }
-echo $from_date . '  ' . $through_date . '  ' . $cust_id;
 	
 $res = mysqli_query($con, $get_trans);
-echo mysqli_num_rows($res);
 ?>
 <div style="text-align: center">
 <table border="1" style="width:600px">
