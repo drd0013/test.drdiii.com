@@ -6,12 +6,12 @@ session_start();
 <head>
 	<meta charset="utf-8">
 	<title>Account Transactions</title>
-	<link rel="stylesheet" href='../includes/datepicker/development-bundle/themes/base/jquery.ui.all.css'>
-	<script src='../includes/datepicker/js/jquery-1.10.2.js' type="text/javascript"></script>
-	<script src='../includes/datepicker/development-bundle/ui/jquery.ui.core.js'></script>
-	<script src='../includes/datepicker/development-bundle/ui/jquery.ui.widget.js'></script>
-	<script src='../includes/datepicker/development-bundle/ui/jquery.ui.datepicker.js'></script>
-	<link rel="stylesheet" href='../includes/datepicker/development-bundle/demos/demos.css'>
+	<link rel="stylesheet" href=$_SERVER['DOCUMENT_ROOT'].'/home/datepicker/development-bundle/themes/base/jquery.ui.all.css'>
+	<script src=$_SERVER['DOCUMENT_ROOT'].'/home/datepicker/js/jquery-1.10.2.js' type="text/javascript"></script>
+	<script src=$_SERVER['DOCUMENT_ROOT'].'/home/datepicker/development-bundle/ui/jquery.ui.core.js'></script>
+	<script src=$_SERVER['DOCUMENT_ROOT'].'/home/datepicker/development-bundle/ui/jquery.ui.widget.js'></script>
+	<script src=$_SERVER['DOCUMENT_ROOT'].'/home/datepicker/development-bundle/ui/jquery.ui.datepicker.js'></script>
+	<link rel="stylesheet" href=$_SERVER['DOCUMENT_ROOT'].'/home/datepicker/development-bundle/demos/demos.css'>
 	<script>
 		$(function() {
 			$( "#from_date" ).datepicker({
