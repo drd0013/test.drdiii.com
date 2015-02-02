@@ -15,7 +15,7 @@ session_start();
 	<script>
 		$(function() {
 			$( "#from_date" ).datepicker({
-				dateFormat: "yymmdd",
+				dateFormat: "yy-mm-dd",
 				defaultDate: "-30d",
 				changeMonth: true,
 				changeYear: true,
@@ -26,7 +26,7 @@ session_start();
 					}
 			});
 			$( "#through_date" ).datepicker({
-				dateFormat: "yymmdd",
+				dateFormat: "yy-mm-dd",
 				defaultDate: "+0d",
 				changeMonth: true,
 				changeYear: true,
